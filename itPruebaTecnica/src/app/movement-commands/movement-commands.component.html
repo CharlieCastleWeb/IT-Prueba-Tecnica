@@ -1,0 +1,18 @@
+<h5>Introduce movement command</h5>
+
+<form #movementCommands="ngForm" (ngSubmit)="submit(movementCommands)">
+    <div class="form-group d-flex">
+        <input 
+            type="text" 
+            class="form-control"
+            name="movementCommand" 
+            id="movementCommand"
+            placeholder="Movement command"
+            ngModel
+            >
+        <button 
+            type="submit" 
+            class="btn btn-primary"
+        >OK</button>
+    </div>
+</form>

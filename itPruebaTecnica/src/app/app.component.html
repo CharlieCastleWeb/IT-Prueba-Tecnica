@@ -1,1 +1,17 @@
-<h1>HOLA MUNDO</h1>
+<div class="container">
+
+  <h1 class="text-center mt-4">MARS ROVER INSTRUCTIONS VALIDATOR</h1>
+    
+  <div class="mx-auto mt-4 border-primary bg-light border p-3 col-8">
+    <app-square-dimensions 
+      (infoSquareDimensions)="receiveInfoSquareDimensions($event)">
+    </app-square-dimensions>
+    <app-initial-position
+      (infoInitialPosition)="receiveInfoInitialPosition($event)">
+    </app-initial-position>
+    <app-movement-commands></app-movement-commands>
+    <app-results></app-results>
+  </div>
+  
+
+</div>

@@ -1,0 +1,36 @@
+<h5>Initial position</h5>
+
+<form #initialPosition="ngForm" (ngSubmit)="submit(initialPosition)">
+    <div class="form-group d-flex">
+        <input 
+            type="number" 
+            class="form-control"
+            name="coordinateX" 
+            id="coordinateX"
+            placeholder="Coordinate x"
+            ngModel>
+        <input 
+            type="number" 
+            class="form-control"
+            name="coordinateY" 
+            id="coordinateY"
+            placeholder="Coordinate y"
+            ngModel>
+        <select 
+            type="text" 
+            class="form-select"
+            name="orientation" 
+            id="orientation"
+            placeholder="Orientation"
+            ngModel>
+            <option value="N">N</option>
+            <option value="E">E</option>
+            <option value="S">S</option>
+            <option value="W">W</option>
+        </select>
+        <button 
+            type="submit" 
+            class="btn btn-primary"
+        >OK</button>
+    </div>
+</form>
