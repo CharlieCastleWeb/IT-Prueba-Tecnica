@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
+import { Component, OnInit} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { InfoInterface } from 'src/interfaces/interfaces';
+import { InfoService } from '../services/info.service';
 
 @Component({
   selector: 'app-initial-position',
@@ -8,10 +10,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class InitialPositionComponent implements OnInit {
 
-  newInitialPosition: any;
+  newInfo: InfoInterface | undefined;
+  subscription: Subscription | undefined;
 
-  @Output() infoInitialPosition = new EventEmitter();
 
+  /*
   submit(initialPosition: any) {
     this.newInitialPosition =   [initialPosition.value.coordinateX, 
                                 initialPosition.value.coordinateY, 
@@ -19,10 +22,16 @@ export class InitialPositionComponent implements OnInit {
     this.infoInitialPosition.emit(this.newInitialPosition);
     console.log("Form submitted initial position", this.newInitialPosition); 
   }
+  */
 
-  constructor() { }
+  constructor(private data: InfoService) { }
 
   ngOnInit(): void {
+    this.subscription = this.data.currentInfo$.subscribe(newInfo => this.newInfo = newInfo as any);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

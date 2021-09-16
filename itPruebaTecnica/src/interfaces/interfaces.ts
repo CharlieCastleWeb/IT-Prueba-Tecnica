@@ -1,4 +1,4 @@
-export interface Info {
+export interface InfoInterface {
     squareDimensions: number[]
     initialPosition: [number, number, string]
     movementCommand: [string, string, string, string]

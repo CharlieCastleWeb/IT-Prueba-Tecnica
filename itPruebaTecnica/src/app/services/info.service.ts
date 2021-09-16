@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Info } from 'src/interfaces/interfaces';
+import { InfoInterface } from 'src/interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InfoService {
 
-  info: Info = {
+  info: InfoInterface = {
     squareDimensions: [] ,
     initialPosition: [0,0,''],
     movementCommand: ['','','',''],
@@ -18,10 +18,6 @@ export class InfoService {
   private newInfo = new BehaviorSubject<Object>({});
 
   currentInfo$ = this.newInfo.asObservable();
-
-  validateInitialPosition() {
-    
-  }
 
   constructor() { }
 }
