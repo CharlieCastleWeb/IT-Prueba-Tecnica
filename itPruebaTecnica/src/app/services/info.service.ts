@@ -8,16 +8,21 @@ import { InfoInterface } from 'src/interfaces/interfaces';
 export class InfoService {
 
   info: InfoInterface = {
-    squareDimensions: [] ,
-    initialPosition: [0,0,''],
-    movementCommand: ['','','',''],
-    validCommands: false,
-    finalPosition: [0,0,'']
+    squareDimensions: [0, 0] ,
+    initialPosition: [0,0,0],
+    currentPosition: [0,0,0],
+    movementCommand: []
   }
 
-  private newInfo = new BehaviorSubject<Object>({});
+  private newInfo = new BehaviorSubject<Object>(this.info);
 
   currentInfo$ = this.newInfo.asObservable();
 
   constructor() { }
+
+  changeProperty(property: keyof InfoInterface, value: any) {
+    this.info[property] = value;
+    this.newInfo.next(this.info);
+    console.log(this.info);
+  }
 }

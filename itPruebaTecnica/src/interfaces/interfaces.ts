@@ -1,7 +1,6 @@
 export interface InfoInterface {
-    squareDimensions: number[]
-    initialPosition: [number, number, string]
-    movementCommand: [string, string, string, string]
-    validCommands: boolean
-    finalPosition: [number, number, string]
+    squareDimensions: [number, number]
+    initialPosition: [number, number, number]
+    currentPosition: [number, number, number]
+    movementCommand: (string)[]
 }

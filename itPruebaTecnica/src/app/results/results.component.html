@@ -1,1 +1,30 @@
-<p>results works!</p>
+<div class="mt-4">
+    <p>Square Dimensions are: {{newInfo.squareDimensions[0]}} x {{newInfo.squareDimensions[1]}}</p>
+
+    <p>Initial Position is: {{newInfo.initialPosition[0]}}, {{newInfo.initialPosition[1]}} 
+        and orientation {{orientationToLetter(newInfo.initialPosition[2])}}</p>
+
+    <p>Movement command is: {{newInfo.movementCommand}}</p>
+</div>
+<button 
+    class="btn btn-primary w-100" 
+    (click)="validate()"
+    [disabled] = isDisabled
+    > VALIDATE </button>
+
+<div *ngIf=isDisabled class="mt-4">
+    
+    <div *ngIf="!goneOut">
+        <h5 >TRUE</h5>
+        <P>The Rover was position inside the limits and it has moved inside the square dimensions.</P>
+    </div>
+    <div *ngIf="goneOut">
+        <h5 >FALSE</h5>
+        <P>The Rover's initial position was out of limits or it has gone out of the square dimensions.</P>
+    </div>
+    
+    <p>Final Position is = {{newInfo.currentPosition[0]}}, {{newInfo.currentPosition[1]}} 
+        and orientation {{orientationToLetter(newInfo.currentPosition[2])}}</p>
+
+</div>
+

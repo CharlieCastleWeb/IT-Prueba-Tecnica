@@ -1,24 +1,26 @@
 <h5>Introduce square dimensions</h5>
 
-<form #squareDimensions="ngForm" (ngSubmit)="submit(squareDimensions)">
+<form #squareDimensions="ngForm" (ngSubmit)="submit()">
     <div class="form-group d-flex">
         <input 
-            type="number" 
-            class="form-control"
+            type="number"
             name="squareWidth" 
-            id="squareWidth"
+            class="form-control"
             placeholder="Width"
-            ngModel>
+            [(ngModel)]="newInfo.squareDimensions[0]"
+            [disabled]="isDisabled">
         <input 
             type="number" 
             class="form-control"
             name="squareHeight" 
             id="squareHeight"
             placeholder="Height"
-            ngModel>
+            [(ngModel)]="newInfo.squareDimensions[1]"
+            [disabled]="isDisabled">
         <button 
             type="submit" 
             class="btn btn-primary"
+            [disabled]="isDisabled"
         >OK</button>
     </div>
 </form>

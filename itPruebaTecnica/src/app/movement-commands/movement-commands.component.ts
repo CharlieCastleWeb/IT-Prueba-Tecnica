@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { InfoService } from '../services/info.service';
 
 @Component({
   selector: 'app-movement-commands',
@@ -8,16 +10,31 @@ import { Component, OnInit } from '@angular/core';
 export class MovementCommandsComponent implements OnInit {
 
   newMovementCommand: string[] = [];
+  newInfo: any;
+  subscription: Subscription | undefined;
+  isDisabled: boolean = false;
 
-  submit(movementCommands: any) {
-    this.newMovementCommand = [movementCommands.value.movementCommand.split("")];
-    
-    console.log("Form submitted", this.newMovementCommand); 
+  addCommand(command: string) {
+    if (command == '-') {
+      this.newMovementCommand.pop();
+    } else {
+      this.newMovementCommand.push(command);
+    }
   }
 
-  constructor() { }
+  submit() {
+    this.data.changeProperty('movementCommand', this.newMovementCommand);
+    this.isDisabled = true;
+  }
+
+  constructor(private data: InfoService) { }
 
   ngOnInit(): void {
+    this.subscription = this.data.currentInfo$.subscribe(info => this.newInfo = info as any);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

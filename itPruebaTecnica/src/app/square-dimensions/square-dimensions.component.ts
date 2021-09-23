@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { InfoService } from '../services/info.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-square-dimensions',
@@ -7,20 +9,23 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SquareDimensionsComponent implements OnInit {
 
-  newSquareDimensions: number[] = [0,0];
+  isDisabled: boolean = false;
+  newInfo: any;
+  subscription: Subscription | undefined;
 
-  @Output() infoSquareDimensions = new EventEmitter();
-
-  submit(squareDimensions: any) {
-    this.newSquareDimensions = [squareDimensions.value.squareWidth, squareDimensions.value.squareHeight];
-    this.infoSquareDimensions.emit(this.newSquareDimensions);
-    console.log("Form submitted square dimensions", this.newSquareDimensions); 
+  submit() { 
+    this.data.changeProperty('squareDimensions', this.newInfo?.squareDimensions);
+    this.isDisabled = true;
   }
 
-  constructor() { }
+  constructor(private data: InfoService) { }
 
   ngOnInit(): void {
-    
+    this.subscription = this.data.currentInfo$.subscribe(info => this.newInfo = info as any);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }
