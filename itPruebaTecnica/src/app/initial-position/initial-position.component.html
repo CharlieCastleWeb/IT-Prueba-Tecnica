@@ -6,16 +6,18 @@
             class="form-control"
             name="coordinateX" 
             id="coordinateX"
-            placeholder="Coordinate x"
-            [(ngModel)]="newInfo.initialPosition[0]"
+            placeholder="X"
+            value="newInfo.initialPosition[0]==0 ? '': 'newInfo.initialPosition[0]'"
+            (ngModel)="newInfo.initialPosition[0]"
             [disabled]="isDisabled">
         <input 
             type="number" 
             class="form-control"
             name="coordinateY" 
             id="coordinateY"
-            placeholder="Coordinate y"
-            [(ngModel)]="newInfo.initialPosition[1]"
+            placeholder="Y"
+            value="newInfo.initialPosition[1]==0 ? '': 'newInfo.initialPosition[1]'"
+            (ngModel)="newInfo.initialPosition[1]"
             [disabled]="isDisabled">
         <select 
             #orientation

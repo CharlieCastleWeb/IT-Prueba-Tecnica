@@ -9,7 +9,7 @@ import { InfoService } from '../services/info.service';
 })
 export class MovementCommandsComponent implements OnInit {
 
-  newMovementCommand: string[] = [];
+  newMovementCommand: string[] = [""];
   newInfo: any;
   subscription: Subscription | undefined;
   isDisabled: boolean = false;
